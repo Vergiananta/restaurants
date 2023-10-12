@@ -1,53 +1,34 @@
 'use client';
 
+import Dapur from '@/app/dapur/page';
+import Kasir from '@/app/kasir/page';
+import Menu from '@/app/menu/page';
+import Order from '@/app/order/page';
 import Head from 'next/head';
-import * as React from 'react';
+import React, { useState } from 'react';
 
-import ArrowLink from '@/components/links/ArrowLink';
-import ButtonLink from '@/components/links/ButtonLink';
-import UnderlineLink from '@/components/links/UnderlineLink';
-import UnstyledLink from '@/components/links/UnstyledLink';
-
-/**
- * SVGR Support
- * Caveat: No React Props Type.
- *
- * You can override the next-env if the type is important to you
- * @see https://stackoverflow.com/questions/68103844/how-to-override-next-js-svg-module-declaration
- */
-import Logo from '~/svg/Logo.svg';
-
-// !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
-// Before you begin editing, follow all comments with `STARTERCONF`,
-// to customize the default configuration.
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 export default function HomePage() {
+  const [dapur, setDapur] = useState()
+  const [menu, setMenu] = useState()
+  const [kasir, setKasir] = useState()
+  const [order, setOrder] = useState()
+
   return (
-    <div className='container mx-auto'>
-      <div className="flex justify-between bg-yellow-500 grid grid-cols-3 gap-5">
-          <div className="bg-gray-500 col-span-2">
-            <ul className="flex m-3">
-        <li className="flex-1 mr-2">
-          <a className="text-center block border border-blue-500 rounded py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white" href="#">Menu</a>
-        </li>
-        <li className="flex-1 mr-2">
-          <a className="text-center block border border-blue-500 rounded py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white" href="#">Order</a>
-        </li>
-        <li className="flex-1 mr-2">
-          <a className="text-center block border border-blue-500 rounded py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white" href="#">Dapur</a>
-        </li>
-        <li className="flex-1 mr-2">
-          <a className="text-center block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4" href="#">Kasir</a>
-        </li>
-      </ul>
-          </div>
-        <div className="m-auto col-span-1">
-            <button
-                className="bg-white hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                Button
-            </button>
-        </div>
-      </div>
-    </div>
+    <>
+      <Router>
+        <Routes >
+          <Route path='/menu'  element={<Menu/>}/>
+          <Route path='/order' element={<Order/>}/>
+          <Route path='/dapur' element={<Dapur/>} />
+          <Route path='/kasir' element={<Kasir />}/>
+        </Routes>
+      </Router>
+    </>
   );
 }
